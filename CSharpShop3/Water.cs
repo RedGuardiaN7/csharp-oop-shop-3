@@ -21,7 +21,7 @@ namespace СSharpShop3
             {
                 if (value > 1.5 || value < 0)
                 {
-                    Console.WriteLine("Errore, numero invalido di litri");        // Questo viene fatto per mantenere il numero massimo di pezzi
+                    throw new ArgumentOutOfRangeException("I litri devono essre compresi tra 0 e 1,5");        // Questo viene fatto per mantenere il numero massimo di pezzi
                 }
                 else
                 {
@@ -41,6 +41,10 @@ namespace СSharpShop3
 
         public Water(string name,string description, double price, double Litres, double Ph, string Source, double MaxCapacity = 1.5) : base(name, description, price)
         {
+            if (Ph < 0 || Ph > 10)
+            {
+                throw new ArgumentOutOfRangeException("Ph, deve essere compreso tra 0 e 10");
+            }
             this.Litres = Litres;
             this.Ph = Ph;
             this.Source = Source;
@@ -53,10 +57,10 @@ namespace СSharpShop3
 
         public void Drink(double DrinkLitres)
         {
-            if (DrinkLitres > this.Litres)
+            if (DrinkLitres >= this.Litres)
             {
 
-                Console.WriteLine("Impossibile bere più acqua di quanta ne è presente!");
+                throw new EmptyBottleException();
             }
             else
             {
@@ -115,6 +119,15 @@ namespace СSharpShop3
             Console.WriteLine("-----------------------------------------------------");
             Console.WriteLine();
 
+        }
+
+        //Eccezione personalizzata per il metodo Drink
+
+        public class EmptyBottleException : Exception
+        {
+            public EmptyBottleException() { }
+
+            public EmptyBottleException(string message) : base(message) { }
         }
     }
 }
