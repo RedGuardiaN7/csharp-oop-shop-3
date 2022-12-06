@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static СSharpShop3.Water.EmptyBottleException;
 
 namespace СSharpShop3
 {
@@ -21,7 +22,7 @@ namespace СSharpShop3
             {
                 if (value > 1.5 || value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("I litri devono essre compresi tra 0 e 1,5");        // Questo viene fatto per mantenere il numero massimo di pezzi
+                    throw new ArgumentOutOfRangeException("Litri, devono essere compresi tra 0 e 1,5");        // Questo viene fatto per mantenere il numero massimo di pezzi
                 }
                 else
                 {
@@ -41,7 +42,7 @@ namespace СSharpShop3
 
         public Water(string name,string description, double price, double Litres, double Ph, string Source, double MaxCapacity = 1.5) : base(name, description, price)
         {
-            if (Ph < 0 || Ph > 10)
+            if (Ph <= 0 || Ph > 10)
             {
                 throw new ArgumentOutOfRangeException("Ph, deve essere compreso tra 0 e 10");
             }
@@ -57,10 +58,13 @@ namespace СSharpShop3
 
         public void Drink(double DrinkLitres)
         {
-            if (DrinkLitres >= this.Litres)
+            if (DrinkLitres == this.Litres)
             {
 
-                throw new EmptyBottleException();
+                throw new EmptyBottleException("Hai bevuto tutta l'acqua, la bottiglia è vuota!");
+            } if (DrinkLitres > this.Litres)
+            {
+                throw new EmptyBottleException("Non puoi bere più di quanta acqua è presente nella bottiglia!");
             }
             else
             {
@@ -75,7 +79,7 @@ namespace СSharpShop3
         {
             if ((Fill_Litres + this.Litres) > MaxCapacity)
             {
-                Console.WriteLine("Wow, hai riempito troppo la bottiglia! (Max capacità: 1.5 l)");
+                throw new OverfillBottleException("Wow, hai riempito troppo la bottiglia! (Max capacità: 1.5 l)");
             }
             else
             {
@@ -123,12 +127,22 @@ namespace СSharpShop3
 
         //Eccezione personalizzata per il metodo Drink
 
-        public class EmptyBottleException : Exception
+        internal class EmptyBottleException : Exception
         {
             public EmptyBottleException() { }
 
             public EmptyBottleException(string message) : base(message) { }
         }
+
+        //Eccezione personalizzata per il metodo Fill
+
+        internal class OverfillBottleException : Exception 
+        { 
+            public OverfillBottleException() { }
+
+            public OverfillBottleException(string message) : base(message) { }
+        }
+        
     }
 }
 

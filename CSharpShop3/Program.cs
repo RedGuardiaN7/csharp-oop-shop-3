@@ -8,15 +8,23 @@ using static СSharpShop3.Water;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-Water Guizza = new Water("Acqua_Guizza", "Acqua naturale, povera di sodio.", 0.24, 1.5, 7.5, "Scorzè");
-
 try
 {
+    Water Guizza = new Water("Acqua_Guizza", "Acqua naturale, povera di sodio.", 0.24, 1.5, 7.5, "Scorzè");
+
     Guizza.Print(1);
-    Guizza.Drink(2);
-    Guizza.Fill(1);
+    Guizza.Drink(1);
+    Guizza.Fill(2);
 }
-catch (EmptyBottleException)
+catch (ArgumentOutOfRangeException e)
 {
-    Console.WriteLine("La bottiglia è vuota");
+    Console.WriteLine(e.Message);
+}
+catch (EmptyBottleException e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (OverfillBottleException e)
+{
+    Console.WriteLine(e.Message);
 }
