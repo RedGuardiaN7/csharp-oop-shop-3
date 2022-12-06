@@ -10,7 +10,7 @@ namespace СSharpShop3
     {
 
         //Viene utilizzato "public" ma assieme ai setter e getter auto-implementati, che rendono le caratteristiche private, ma peremttono di usare i getter e i setter.
-        public string Code { get; }                    //Il codice prodotto è accessibile solo in lettura
+        public string Code { get; }                     //Il codice prodotto è accessibile solo in lettura
 
         public string Name { get; set; }
 
@@ -20,21 +20,11 @@ namespace СSharpShop3
 
         public double Iva { get; set; }
 
-        //Il codice del prodotto viene generato casualmente
+        public static int Count { get; set; } = 0;          //Questo attributo statico permette di contare il numero dei prodotti man mano che vengono creati dei nuovi
 
         //------------ COSTRUTTORI ------------ //
-
-        //Costruttore di default
-        public Product()
-        {
-            Random GeneratorRandomNumber = new Random();
-
-            int RandomNumber = GeneratorRandomNumber.Next(0, 999999);
-
-            string PaddedCode = RandomNumber.ToString("D8");         
-            Code = PaddedCode;
-        }
-        //Costruttore con nome e prezzo
+        
+        //Costruttore con nome, prezzo e descrizione
 
         public Product(string name,string desctiption, double price)
         {
@@ -46,21 +36,9 @@ namespace СSharpShop3
             this.Name = name;
             this.Description = desctiption;
             this.Price = price;
+            Count++;
 
         }
-        
-        //Costruttore con nome 
-
-        public Product(string name)
-        {
-            Random GeneratorRandomNumber = new Random();
-            int RandomNumber = GeneratorRandomNumber.Next(0, 999999);
-            string PaddedCode = RandomNumber.ToString("D8");
-            Code = PaddedCode;
-
-            this.Name = name;
-        }
-        //---------- Definizioni dei metodi ---------- //
 
         //Metodo che calcola l'iva del prodotto e ritorna il prezzo pieno
         public double FullPrice()
@@ -117,7 +95,7 @@ namespace СSharpShop3
             Console.WriteLine();
             Console.WriteLine("Il prezzo del prodotto è di: " + this.Price + "€ (senza IVA)");
             Console.WriteLine();
-            Console.WriteLine("----------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------");
             Console.WriteLine();
 
         }

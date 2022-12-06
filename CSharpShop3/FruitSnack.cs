@@ -81,7 +81,7 @@ namespace СSharpShop3
         //Metodo che stampa a video tutte le informazioni del prodotto (override del product.cs)
         public virtual void Print(int num)
         {
-            Console.WriteLine("-------------------- Fruit snack " + num + " ---------------------");
+            Console.WriteLine("-------------------- Fruit snack, prodotto n. " + num + " ---------------------");
             Console.WriteLine();
             Console.WriteLine("Nome: " + this.Name);
             Console.WriteLine();
@@ -104,7 +104,7 @@ namespace СSharpShop3
 
             Console.WriteLine("Prezzo: " + FullPrice + "€");
             Console.WriteLine();
-            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------------------");
             Console.WriteLine();
 
         }
