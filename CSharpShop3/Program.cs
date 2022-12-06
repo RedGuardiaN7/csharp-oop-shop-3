@@ -8,7 +8,9 @@ using static СSharpShop3.Water;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-try
+Console.WriteLine(ConvertToGallons(2));
+
+/*try
 {
     Water Guizza = new Water("Acqua_Guizza", "Acqua naturale, povera di sodio.", 0.24, 1.5, 7.5, "Scorzè");
 
@@ -28,3 +30,4 @@ catch (OverfillBottleException e)
 {
     Console.WriteLine(e.Message);
 }
+*/

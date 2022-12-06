@@ -54,6 +54,13 @@ namespace СSharpShop3
 
         //---------- Definizioni dei metodi ---------- //
 
+        //Metodo statico che converte i litri in galloni
+
+        public static double ConvertToGallons(double litres)
+        {
+            return litres * 3.785;
+        }
+
         //Metodo bevi, che toglie dall’attributo litri una quantità pari a litriDaBere di acqua se presenti
 
         public void Drink(double DrinkLitres)
@@ -142,7 +149,6 @@ namespace СSharpShop3
 
             public OverfillBottleException(string message) : base(message) { }
         }
-        
     }
 }
 
