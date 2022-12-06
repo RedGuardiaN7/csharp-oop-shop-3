@@ -16,7 +16,26 @@ namespace Bonus
 
         public string Description { get; set; }
 
-        public double Price { get; set; }
+        private double _PriceValue;
+        public double Price
+        {
+            get
+            {
+                return _PriceValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Prezzo");
+                }
+                else 
+                { 
+                        _PriceValue = value;
+                }
+            }
+
+        }
 
         public double Iva { get; set; }
 

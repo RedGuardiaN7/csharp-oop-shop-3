@@ -22,7 +22,7 @@ namespace Bonus
             {
                 if (value > 1.5 || value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Litri, devono essere compresi tra 0 e 1,5");        // Questo viene fatto per mantenere il numero massimo di pezzi
+                    throw new ArgumentOutOfRangeException("Litri, devono essere compresi tra 0 e 1,5");        // Questo viene fatto per mantenere il numero massimo di litri
                 }
                 else
                 {
@@ -36,11 +36,11 @@ namespace Bonus
 
         public string Source { get; set; }
 
-        public double MaxCapacity { get; }
+        public double MaxCapacity { get; } = 1.5;
 
         //------------ COSTRUTTORE ------------ //
 
-        public Water(string name,string description, double price, double Litres, double Ph, string Source, double MaxCapacity = 1.5) : base(name, description, price)
+        public Water(string name,string description, double price, double Litres, double Ph, string Source) : base(name, description, price)
         {
             if (Ph <= 0 || Ph > 10)
             {
@@ -49,7 +49,6 @@ namespace Bonus
             this.Litres = Litres;
             this.Ph = Ph;
             this.Source = Source;
-            this.MaxCapacity = MaxCapacity;
         }
 
         //---------- Definizioni dei metodi ---------- //
@@ -104,7 +103,7 @@ namespace Bonus
         }
 
         //Metodo che stampa a video tutte le informazioni del prodotto (override del product.cs)
-        public virtual void Print(int num)
+        public override void Print(int num)
         {
             Console.WriteLine("--------------------- Bottiglia, prodotto n. " + num + " ----------------------");
             Console.WriteLine();

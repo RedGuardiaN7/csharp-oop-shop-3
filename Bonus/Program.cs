@@ -9,11 +9,6 @@ using static Bonus.Product;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-//Prova del metodo statico di conversione in galloni
-
-Console.WriteLine(ConvertToGallons(2) + " galloni");
-Console.WriteLine();
-
 try
 {
     Water Guizza = new Water("Acqua_Guizza", "Acqua naturale, povera di sodio.", 0.24, 1.5, 7.5, "Scorzè");
@@ -28,7 +23,7 @@ try
     Pippo.Print(Count);
 
     FruitSnack ZIG = new FruitSnack("ZIG_Crunchy", "Frutta secca di provenienza certificata", 0.59, 30, 5, false, true);
-
+    
     ZIG.Print(Count);
     ZIG.EcoFriendly();
     ZIG.Healthy();

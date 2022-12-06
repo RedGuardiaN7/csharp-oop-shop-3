@@ -10,13 +10,88 @@ namespace Bonus
     {
         ////Attributi
 
-        public int Power { get; set; }
+        private int _PowerValue;
+        public int Power
+        {
+            get
+            {
+                return _PowerValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Potenza (Frullatore)");
+                }
+                else
+                {
+                    _PowerValue = value;
+                }
+            }
 
-        public int Voltage { get; set; }
+        }
+        private int _VoltageValue;
+        public int Voltage
+        {
+            get
+            {
+                return _VoltageValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Voltaggio (Frullatore)");
+                }
+                else
+                {
+                    _VoltageValue = value;
+                }
+            }
 
-        public double Weight { get; set; }
+        }
 
-        public double Capacity { get; set; }
+        private double _WeightValue;
+        public double Weight
+        {
+            get
+            {
+                return _WeightValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Peso (Frullatore)");
+                }
+                else
+                {
+                    _WeightValue = value;
+                }
+            }
+
+        }
+
+        private double _CapacityValue;
+        public double Capacity
+        {
+            get
+            {
+                return _CapacityValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Capacità (Frullatore)");
+                }
+                else
+                {
+                    _CapacityValue = value;
+                }
+            }
+
+        }
 
         public string Color { get; set; }
 
@@ -34,7 +109,7 @@ namespace Bonus
         //---------- Definizioni dei metodi ---------- //
 
         //Metodo che stampa a video tutte le informazioni del prodotto (override del product.cs)
-        public virtual void Print(int num)
+        public override void Print(int num)
         {
             Console.WriteLine("-------------------- Frullatore, prodotto n. " + num + " ---------------------");
             Console.WriteLine();

@@ -8,11 +8,30 @@ namespace Bonus
 {
     internal class FruitSnack : Product
     {
-        ////Attributi
+        //Attributi
         
         public int MaxPieces { get; }
 
-        public int Weight { get; set; }
+        private int _WeightValue;
+        public int Weight
+        {
+            get
+            {
+                return _WeightValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Peso (Snack frutta)");
+                }
+                else
+                {
+                    _WeightValue = value;
+                }
+            }
+
+        }
 
         private int _PiecesValue;
         public int Pieces {
@@ -21,9 +40,11 @@ namespace Bonus
                 return _PiecesValue;
             } set 
             {
-                if (value > 5 || value < 0) {
-                    Console.WriteLine("Errore, numero di pezzi di frutta invalido");        // Questo viene fatto per mantenere il numero massimo di pezzi
-                } else
+                if (value <= 0 || value > 5) 
+                {
+                    throw new ArgumentOutOfRangeException("Pezzi di frutta, devono essere compresi tra 0 e 5");        // Questo viene fatto per mantenere il numero massimo di pezzi
+                } 
+                else
                 {
                     _PiecesValue= value;
                 }       
@@ -74,12 +95,19 @@ namespace Bonus
 
         public void Eat()
         {
-            this.Pieces = 0;
-            Console.WriteLine("Hai mangiato lo snack");
+            if (this.Pieces == 0)
+            {
+                Console.WriteLine("Avevi già mangiato questo snack, non ricordi?");
+            }
+            else
+            {
+                this.Pieces = 0;
+                Console.WriteLine("Hai mangiato lo snack");
+            }
         }
 
         //Metodo che stampa a video tutte le informazioni del prodotto (override del product.cs)
-        public virtual void Print(int num)
+        public override void Print(int num)
         {
             Console.WriteLine("-------------------- Fruit snack, prodotto n. " + num + " ---------------------");
             Console.WriteLine();
@@ -95,9 +123,9 @@ namespace Bonus
             Console.WriteLine();
             Console.WriteLine("Peso: " + this.Weight + "g");
             Console.WriteLine();
-            Console.WriteLine("Zuccheri aggiunti? " + this.ConvertBoolean(this.AddedSugars));
+            Console.WriteLine("Zuccheri aggiunti? " + ConvertBoolean(this.AddedSugars));
             Console.WriteLine();
-            Console.WriteLine("Eco-friendly? " + this.ConvertBoolean(this.Compostable));
+            Console.WriteLine("Eco-friendly? " + ConvertBoolean(this.Compostable));
             Console.WriteLine();
 
             double FullPrice = this.FullPrice();
@@ -110,7 +138,7 @@ namespace Bonus
         }
 
         //Metodo che converte la booleana
-        private string ConvertBoolean(bool b)
+        private static string ConvertBoolean(bool b)
         {
             if (b)
             {

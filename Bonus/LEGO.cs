@@ -11,11 +11,68 @@ namespace Bonus
         //Attributi
         public int ID { get; set; }
 
-        public int Pieces { get; set; }
+        private int _PiecesValue;
+        public int Pieces
+        {
+            get
+            {
+                return _PiecesValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Numero di pezzi (LEGO)");
+                }
+                else
+                {
+                    _PiecesValue = value;
+                }
+            }
 
-        public int Weight { get; set; }
+        }
 
-        public int RecommandedAge { get; set; }
+        private int _WeightValue;
+        public int Weight
+        {
+            get
+            {
+                return _WeightValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Peso (LEGO)");
+                }
+                else
+                {
+                    _WeightValue = value;
+                }
+            }
+
+        }
+
+        public int _RecommandedAgeValue;
+        public int RecommandedAge
+        {
+            get
+            {
+                return _RecommandedAgeValue;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Età raccomandata (LEGO)");
+                }
+                else
+                {
+                    _RecommandedAgeValue = value;
+                }
+            }
+
+        }
 
         public bool NeedBatteries { get; set; }
 
@@ -67,7 +124,7 @@ namespace Bonus
             }
         }
         //Metodo che stampa a video tutte le informazioni del prodotto (override del product.cs)
-        public virtual void Print(int num)
+        public override void Print(int num)
         {
             Console.WriteLine("--------------------- LEGO Set, prodotto n. " + num + " -----------------------");
             Console.WriteLine();
@@ -81,7 +138,7 @@ namespace Bonus
             Console.WriteLine();
             Console.WriteLine("Numero modello: " + this.ID);
             Console.WriteLine();
-            Console.WriteLine("Età consigliata: " + this.RecommandedAge);
+            Console.WriteLine("Età consigliata: " + this.RecommandedAge + "+");
             Console.WriteLine();
             Console.WriteLine("Numero pezzi: " + this.Pieces);
             Console.WriteLine();
